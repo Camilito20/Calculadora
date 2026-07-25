@@ -9,14 +9,15 @@ public class KeyBoard {
             JPanel centralKeyboard,
             Viewing_window viewingWindow
     ) {
-        centralKeyboard.setLayout(new GridLayout(4, 4, 5, 5));
+        centralKeyboard.setLayout(new GridLayout(5, 4, 5, 5));
         centralKeyboard.setBackground(new Color(242, 242, 242));
 
         String[] buttons = {
-                "9", "8", "7", "/",
-                "6", "5", "4", "*",
-                "3", "2", "1", "+",
-                ",", "0", "=", "-"
+                "", "","", "AC",
+                "9", "8", "7", " / ",
+                "6", "5", "4", " * ",
+                "3", "2", "1", " + ",
+                ",", "0", " = ", " - "
         };
 
         for (String text : buttons) {

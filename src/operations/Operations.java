@@ -1,19 +1,18 @@
 package operations;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 public class Operations {
     ArrayList<String> simbol = new ArrayList<>();
     ArrayList<Integer> nums = new ArrayList<>();
+    private double result;
+
     public Operations(String operation){
         try {
-            double result = calculate(operation);
-            System.out.println(result);
+            setResult(operation);
         } catch (IllegalArgumentException | ArithmeticException e){
-            System.out.println("Error: " + e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
 
     }
@@ -35,9 +34,10 @@ public class Operations {
         //Operaciones de multiplicación y división
         for (int i=1; i < tokens.length; i+=2){
             String operator = tokens[i];
+
             double nextNum = parseNumber(tokens[i+1]);
-            System.out.println(operator);
-            if (operation.equals("*") || operation.equals("/")){
+
+            if (operator.equals("*") || operator.equals("/")){
                 double previousNumber = parseNumber(expression.removeLast());
 
                 double partialResult;
@@ -65,29 +65,34 @@ public class Operations {
         }
 
         double result = Double.parseDouble(expression.getFirst());
-
         //Sumas y restas
         for (int i=1; i < expression.size(); i+=2){
-            String operator = expression.get(1);
-            double nextNum = parseNumber(expression.get(i)+1);
+            String operator = expression.get(i);
+            double nextNum = parseNumber(expression.get(i + 1));
 
             if (operator.equals("+")) result += nextNum;
             else result -= nextNum;
         }
-
         return result;
     }
 
     private double parseNumber(String value){
         try {
             return Double.parseDouble(value);
+
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("Error " + e.getMessage());
         }
 
     }
-    public static void main(String[] args) {
-        new Operations("123 - 200 * 3");
 
+    public void setResult(String result) {
+        System.out.println(result);
+        this.result = calculate(result);
+
+    }
+
+    public String getResult() {
+        return String.valueOf(result);
     }
 }
