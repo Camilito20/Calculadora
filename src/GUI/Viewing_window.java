@@ -1,5 +1,7 @@
 package GUI;
 
+import operations.Operations;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +24,7 @@ public class Viewing_window {
             clear();
         } else {
             lbl_txt.setText(lbl_txt.getText() + num);
+
         }
     }
 
